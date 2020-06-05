@@ -23,8 +23,7 @@
     "@types/node": "^14.0.11",
     "nodemon": "^2.0.4",
     "ts-node": "^8.10.2",
-    "tslint": "^6.1.2",
-    "typescript": "^3.9.5"
+    "tslint": "^6.1.2"
   },
   "dependencies": {
     "cors": "^2.8.5",
@@ -33,6 +32,7 @@
     "helmet": "^3.22.0",
     "morgan": "^1.10.0",
     "rimraf": "^3.0.2",
-    "twitch-js": "^2.0.0-beta.33"
+    "twitch-js": "^2.0.0-beta.33",
+    "typescript": "^3.9.5"
   }
 }

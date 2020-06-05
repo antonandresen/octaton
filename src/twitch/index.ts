@@ -1,6 +1,6 @@
 import TwitchJs, { ApiVersions, Message, Messages } from 'twitch-js';
 
-const channel = 'antonosu';
+const channels = ['antonosu', 'notyourwaifu_'];
 const prefix = '!';
 const admins = ['antonosu'];
 
@@ -39,7 +39,9 @@ export const connectBot = async (username: string, token: string) => {
 
   try {
     await chat.connect();
-    chat.join(channel);
+    channels.forEach((channel) => {
+      chat.join(channel);
+    });
   } catch (error) {
     console.error(error);
   }

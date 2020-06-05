@@ -41,7 +41,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.connectBot = void 0;
 var twitch_js_1 = __importDefault(require("twitch-js"));
-var channel = 'antonosu';
+var channels = ['antonosu', 'notyourwaifu_'];
 var prefix = '!';
 var admins = ['antonosu'];
 exports.connectBot = function (username, token) { return __awaiter(void 0, void 0, void 0, function () {
@@ -83,7 +83,9 @@ exports.connectBot = function (username, token) { return __awaiter(void 0, void 
                 return [4 /*yield*/, chat.connect()];
             case 2:
                 _b.sent();
-                chat.join(channel);
+                channels.forEach(function (channel) {
+                    chat.join(channel);
+                });
                 return [3 /*break*/, 4];
             case 3:
                 error_1 = _b.sent();

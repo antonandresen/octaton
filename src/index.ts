@@ -3,6 +3,8 @@ import morgan from 'morgan';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import helmet from 'helmet';
+import passport from 'passport';
+const twitchStrategy = require('passport-twitch').Strategy;
 
 import { connectBot } from './twitch';
 

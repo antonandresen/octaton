@@ -39,9 +39,7 @@ export const connectBot = async (username: string, token: string) => {
 
   try {
     await chat.connect();
-    channels.forEach((channel) => {
-      chat.join(channel);
-    });
+    channels.forEach((channel) => chat.join(channel));
   } catch (error) {
     console.error(error);
   }

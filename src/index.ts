@@ -60,6 +60,7 @@ passport.deserializeUser(function (obj, done) {
   done(null, obj);
 });
 
+const signToken = (user: Express.User) => user;
 app.get('/auth/twitch', passport.authenticate('twitch'));
 app.get(
   '/auth/twitch/callback',
@@ -70,7 +71,7 @@ app.get(
     //res.redirect('/dashboard');
     res
       .status(200)
-      .cookie('jwt', signToken(req.user))
+      .cookie('jwt', signToken(req.user!))
       .redirect('http://localhost:3000');
   }
 );

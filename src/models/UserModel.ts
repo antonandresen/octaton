@@ -4,12 +4,13 @@ import { IUser } from './types';
 
 type DBUser = IUser & Document;
 
-const UserSchema = new mongoose.Schema({
-  email: {
+/*email: {
     type: String,
     required: [true, 'Email is required'],
     maxlength: [80, 'Email can not be longer than 80 characters'],
-  },
+  },*/
+
+const UserSchema = new mongoose.Schema({
   twitchID: {
     type: String,
     required: [true, 'Twitch ID is required'],

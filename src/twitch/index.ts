@@ -30,6 +30,9 @@ export const connectBot = async (username: string, token: string) => {
         chat.say(message.channel, `${message.username}, pls dont dab.`);
         break;
       }
+      case 'mikuia': {
+        chat.say(message.channel, 'Mikuia is bad.');
+      }
       default:
         break;
     }

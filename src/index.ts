@@ -7,14 +7,19 @@ import passport from 'passport';
 const twitchStrategy = require('@d-fischer/passport-twitch').Strategy;
 
 import { connectBot } from './twitch';
+import { UserModel } from './models';
+import { connectDB } from './database';
 
 dotenv.config();
 
-connectBot(process.env.TWITCH_USERNAME!, process.env.TWITCH_TOKEN!);
-
 if (!process.env.PORT) {
+  console.error('All environment variables not set, closing application...');
   process.exit(1);
 }
+
+connectDB();
+
+connectBot(process.env.TWITCH_USERNAME!, process.env.TWITCH_TOKEN!);
 
 const PORT = process.env.PORT || 1337;
 
@@ -44,11 +49,17 @@ passport.use(
       scope: 'user_read',
       includeEmail: true,
     },
-    function (accessToken: any, refreshToken: any, profile: any, done: any) {
+    async (accessToken: any, refreshToken: any, profile: any, done: any) => {
+      const { id: twitchID, display_name } = profile;
       console.log('accessToken: ', accessToken);
       console.log('refreshToken: ', refreshToken);
       console.log('profile: ', profile);
-      return done(null, profile);
+      let user = await UserModel.findOne({ twitchID });
+      if (!user) {
+        // No user found, lets create one.
+        user = await UserModel.create({ twitchID });
+      }
+      return done(null, user);
     }
   )
 );
